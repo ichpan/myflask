@@ -1,0 +1,28 @@
+# Byte-compiled
+__pycache__/
+*.py[cod]
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+build/
+
+# Environments
+vendor/
+venv/
+
+# IDEA files
+.idea
+
+# OSX dir files
+.DS_Store
+
+# Log
+logs
+*.log
+
+# static file
+static/
