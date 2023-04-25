@@ -9,7 +9,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && apt-get install -y tzdata
 
 # Installing python3.8 and server
-RUN apt-get -y install python3 python3-pip python3-dev python3-venv git && apt-get clean
+RUN apt-get -y install python3 python3-pip python3-dev python3-venv git supervisor && apt-get clean
 
 # Set the Python3 pip mirror to the Tsinghua source
 RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/ && pip3 install --upgrade pip
