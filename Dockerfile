@@ -30,4 +30,4 @@ RUN git clone https://ichpan:acp123523@gitee.com/ichpan/myflask.git .
 RUN pip3 install -r requirements.txt
 
 EXPOSE 5001
-ENTRYPOINT ["gunicorn", "-c", "gunicorn.conf.py", "manage:app"]
+ENTRYPOINT ["supervisord", "-c", "supervisor.conf"]
