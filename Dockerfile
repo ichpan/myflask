@@ -11,9 +11,6 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && apt-get install -
 # Installing python3.8 and server
 RUN apt-get -y install python3 python3-pip python3-dev python3-venv git supervisor && apt-get clean
 
-# Set the Python3 pip mirror to the Tsinghua source
-RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/ && pip3 install --upgrade pip
-
 # Set Python3 to use UTF-8 encoding by default
 ENV PYTHONIOENCODING utf-8
 
@@ -22,11 +19,14 @@ ENV VIRTUAL=/venv
 RUN python3 -m venv $VIRTUAL
 ENV PATH="$VIRTUAL/bin:$PATH"
 
+# Set the Python3 pip mirror to the Tsinghua source
+RUN pip3 config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple/ && pip3 install --upgrade pip setuptools
+
 # Application building
 WORKDIR /myflask
 
 # Clone the code and authenticate
-RUN git clone https://ichpan:acp123523@gitee.com/ichpan/myflask.git .
+ADD . .
 RUN pip3 install -r requirements.txt
 
 EXPOSE 5001
