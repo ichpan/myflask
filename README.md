@@ -21,7 +21,7 @@ python -m flask db upgrade
 ~~~bash
 docker build --no-cache -f Dockerfile -t myflask:v0.1 .
 
-docker run -d -p HostPort:ContainerPort ImageID
+docker run -d -p HostPort:ContainerPort --name myflask ImageID
 ~~~
 
 #### 鉴权
