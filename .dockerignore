@@ -26,3 +26,9 @@ logs
 
 # static file
 static/
+
+# vscode
+.vscode
+
+# celery
+celery*.db
