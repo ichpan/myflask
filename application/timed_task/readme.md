@@ -3,7 +3,7 @@
 ## 启动命令
 
 ~~~bash
-celery -A application.timed_task.celery_app beat
+celery -A application.timed_task.celery_app beat -l info
 celery -A application.timed_task.celery_app worker -l info
 
 # 使用multi方式启动定时任务,celery会自动生成任务子节点和自动创建子进程
