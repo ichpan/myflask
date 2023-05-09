@@ -40,3 +40,6 @@ class Config:
     # flask_jwt_extended
     JWT_SECRET_KEY = '710f9e2f0646d4a7df0d141c0717b4f1c8469e97d13a4b82875e19b1e3534202'
     JWT_ACCESS_TOKEN_EXPIRES = 7 * 24 * 60 * 60
+
+    # ibs.amap.com key
+    SWEET_KEY = '91025bcba94bb12189ac21d522b18b61'

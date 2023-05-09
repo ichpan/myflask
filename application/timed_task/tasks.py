@@ -19,6 +19,6 @@ def add(a, b):
     return a + b
 
 
-@app.task
-def say_hi():
-    return 'hi!'
+# @app.task
+# def say_hi():
+#     return 'hi!'
