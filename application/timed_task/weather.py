@@ -1,40 +1,41 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import requests
-from fake_useragent import UserAgent
+import logging
+from datetime import datetime as dt
 
-from application.settings import Config
 from application.timed_task.celery_app import app
-
-
-class IbsWeather:
-
-    def __init__(self, city='640121'):
-        self.ua = UserAgent()
-        self.key = Config.SWEET_KEY
-        self.baseurl = 'https://restapi.amap.com/v3/weather/weatherInfo'
-        self.headers = {
-            'User-Agent': self.ua.random
-        }
-
-        self.params = {
-            'key': self.key,
-            'city': city
-        }
-
-    def call_weather_info_api(self):
-        resp = requests.get(self.baseurl, params=self.params, headers=self.headers)
-        if resp.ok:
-            return resp.status_code, resp.json()
-
-        return resp.status_code, {}
+from application.utils.ibs_weather import IbsWeather
+from application.utils.mail_server import MailServer
 
 
 @app.task
-def get_weather_info():
+def send_weather_info():
     """
-    从高德地图获取天气信息
+    get weather info from ibs.com
     """
     ibs = IbsWeather()
-    return ibs.call_weather_info_api()
+    mail = MailServer()
+    weather_info = ibs.call_weather_info_api()
+
+    if weather_info is None:
+        logging.error('get weather info error!')
+        raise 'get weather info error!'
+
+    live = weather_info['lives'][0]
+    date = dt.now().strftime('%Y年%m月%d日')
+    greet = f"""
+        早上好！王同学,今天是{date},
+        今日☁️可能是:{live.get('weather')},
+        🌡️温度大概是:{live.get('temperature')}°C左右,
+        风向差不多是:{live.get('winddirection')},
+        风力估计有:{live.get('windpower')}级,
+        那么,早安我的小公主🌹今天也要开心哦🫰🏻
+    """
+
+    mail.send_email(
+        to_email='2965345482@qq.com',
+        subject='安同学给您请安啦',
+        body=greet
+    )
+    logging.info('邮件发送成功！')

@@ -43,3 +43,9 @@ class Config:
 
     # ibs.amap.com key
     SWEET_KEY = '91025bcba94bb12189ac21d522b18b61'
+
+    # mail server
+    MAIL_ID = 'mhan_2010@163.com'
+    MAIL_PWD = 'WTKOHBNHVZPCWYOB'
+    MAIL_SMTP_SERVER = 'smtp.163.com'
+    MAIL_SMTP_PORT = 25

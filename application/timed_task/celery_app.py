@@ -13,13 +13,14 @@ app = Celery('proj', include=[
 app.config_from_object('application.settings.celeryconfig')
 
 # 定时任务
+# timedelta(seconds=5) 按秒执行依赖timedelta
 app.conf.beat_schedule = {
     "time_teller": {
         "task": "application.timed_task.tasks.time_teller",
         "schedule": crontab(minute="*/1")
     },
-    "get_weather": {
+    "send_weather_info": {
         "task": "application.timed_task.weather.get_weather_info",
-        "schedule": timedelta(seconds=5)
+        "schedule": crontab(minute=0, hour=7)
     }
 }
