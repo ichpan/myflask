@@ -10,11 +10,13 @@ from application.timed_task.celery_app import app
 
 class IbsWeather:
 
-    def __init__(self, city='640100'):
+    def __init__(self, city='640121'):
         self.ua = UserAgent()
         self.key = Config.SWEET_KEY
         self.baseurl = 'https://restapi.amap.com/v3/weather/weatherInfo'
-        self.headers = {'User-Agent': self.ua.random}
+        self.headers = {
+            'User-Agent': self.ua.random
+        }
 
         self.params = {
             'key': self.key,
