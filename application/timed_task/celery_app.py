@@ -17,7 +17,7 @@ app.config_from_object('application.settings.celeryconfig')
 app.conf.beat_schedule = {
     "time_teller": {
         "task": "application.timed_task.tasks.time_teller",
-        "schedule": crontab(minute="*/1")
+        "schedule": crontab(hour="*/2")
     },
     "send_weather_info": {
         "task": "application.timed_task.weather.get_weather_info",

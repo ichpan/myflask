@@ -17,8 +17,3 @@ def time_teller():
 def add(a, b):
     time.sleep(3)  # 模拟耗时
     return a + b
-
-
-# @app.task
-# def say_hi():
-#     return 'hi!'
