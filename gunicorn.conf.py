@@ -16,5 +16,6 @@ worker_class = 'gevent'
 
 # Config log
 loglevel = 'info'
+redirect_stderr = False
 accesslog = str(BaseDir.joinpath('logs/gunicorn.access.log'))
 errorlog = str(BaseDir.joinpath('logs/gunicorn.error.log'))
