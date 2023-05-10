@@ -20,7 +20,7 @@ app.conf.beat_schedule = {
         "schedule": crontab(hour="*/2")
     },
     "send_weather_info": {
-        "task": "application.timed_task.weather.get_weather_info",
+        "task": "application.timed_task.weather.send_weather_info",
         "schedule": crontab(minute=0, hour=7)
     }
 }
