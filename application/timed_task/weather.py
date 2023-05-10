@@ -26,7 +26,7 @@ def send_weather_info():
     date = dt.now().strftime('%Y年%m月%d日')
     greet = f"""
         早上好！王同学,今天是{date},
-        今日☁️可能是:{live.get('weather')},
+        今日☁️天气可能是:{live.get('weather')},
         🌡️温度大概是:{live.get('temperature')}°C左右,
         风向差不多是:{live.get('winddirection')},
         风力估计有:{live.get('windpower')}级,
