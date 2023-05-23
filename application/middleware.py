@@ -5,6 +5,7 @@ from flask import request, g, abort
 from flask_jwt_extended import verify_jwt_in_request
 
 whitelist_routes = (
+    '/api/v1/index',
     '/api/v1/login',
     '/api/v1/register'
 )

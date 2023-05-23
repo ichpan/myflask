@@ -1,4 +1,4 @@
-Flask==2.2.3
+Flask[async]==2.3.2
 Flask-SQLAlchemy==3.0.3
 flask-redis==0.4.0
 flask_wtf==1.1.1
