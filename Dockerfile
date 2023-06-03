@@ -9,7 +9,7 @@ RUN sed -i 's/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/source
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && apt-get install -y tzdata
 
 # Installing python3.8 and server
-RUN apt-get -y install python3 python3-pip python3-dev python3-venv git supervisor && apt-get clean
+RUN apt-get -y install python3 python3-pip python3-dev python3-venv supervisor && apt-get clean
 
 # Set Python3 to use UTF-8 encoding by default
 ENV PYTHONIOENCODING utf-8
