@@ -14,8 +14,8 @@ class Config:
     SECRET_KEY = '00cc52961e50dd04c2e7533f5a4c4e2b'
     LOG_LEVEL = 'DEBUG'
 
-    # server
-    HOST = '101.43.226.212'
+    # server  公网：121.36.24.44
+    HOST = '192.168.0.102'
     DB_PORT = 3306
     REDIS_PORT = 6379
 
