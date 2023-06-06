@@ -47,12 +47,13 @@ def create_app(conf_name):
     app.after_request(middleware.after_request)
     app.teardown_request(middleware.teardown_request)
 
-    # error handles
-    app.register_error_handler(404, error_handlers.exception_404_not_found)
-    app.register_error_handler(405, error_handlers.exception_method_not_allow)
-
     # blueprint
     app.register_blueprint(index.index_blueprint, url_prefix='/api/v1')
     app.register_blueprint(user.user_blueprint, url_prefix='/api/v1')
+
+    # error handles
+    app.register_error_handler(404, error_handlers.exception_404_not_found)
+    app.register_error_handler(405, error_handlers.exception_method_not_allow)
+    app.register_error_handler(Exception, error_handlers.exception_internal_server_error)
 
     return app

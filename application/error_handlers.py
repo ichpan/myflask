@@ -8,9 +8,14 @@ from flask import jsonify
 
 def exception_404_not_found(error):
     logging.error("An exception occurred: {}".format(str(error)))
-    return jsonify(msg='404 not found.'), 404
+    return '404 not found.', 404
 
 
 def exception_method_not_allow(error):
     logging.error("An exception occurred: {}".format(str(error)))
-    return jsonify(msg='method not allowed'), 405
+    return 'method not allowed', 405
+
+
+def exception_internal_server_error(error):
+    logging.error("An exception occurred: {}".format(str(error)))
+    return jsonify(msg='call interface successfully', status_code=5000), 500
