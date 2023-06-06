@@ -14,3 +14,13 @@ async def index():
 
     logging.info('请求进入视图！')
     return jsonify(data='welcome flask！'), 200
+
+
+@index_blueprint.route('/test')
+def test():
+    try:
+        print(1 / 0)
+    except Exception as e:
+        raise Exception(e)
+
+    return jsonify(data=[]), 200

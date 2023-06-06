@@ -7,7 +7,7 @@ from application import create_app
 from application.extensions import db
 from application.apps.user.model import User, Role
 
-app = create_app('prod')
+app = create_app('dev')
 migrate = Migrate(app, db)
 
 if __name__ == '__main__':

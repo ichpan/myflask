@@ -3,15 +3,11 @@
 
 from flask import Flask
 from flask_wtf.csrf import CSRFProtect
-from flask_cors import CORS
 
 from application.settings.dev import DevConfig
 from application.settings.prod import ProdConfig
-from application.extensions import db, redis_cli, bcrypt, jwt
-from application.logger import setup_log
-from application.middleware import before_request, after_request, teardown_request
-from application.apps.index import index_blueprint
-from application.apps.user import user_blueprint
+from application import extensions, logger, middleware, error_handlers
+from application.apps import index, user
 
 config = {
     "dev": DevConfig,
@@ -27,33 +23,37 @@ def create_app(conf_name):
     app.config.from_object(conf)
 
     # cross-domain
-    CORS(app)
+    extensions.CORS(app)
 
     # password tools
-    bcrypt.init_app(app)
+    extensions.bcrypt.init_app(app)
 
     # open CSRF
     # CSRFProtect(app)
 
     # config db
-    db.init_app(app)
+    extensions.db.init_app(app)
 
     # config redis
-    redis_cli.init_app(app)
+    extensions.redis_cli.init_app(app)
 
     # config logger
-    setup_log(conf)
+    logger.setup_log(conf)
 
     # json web token.
-    jwt.init_app(app)
+    extensions.jwt.init_app(app)
 
     # middleware
-    app.before_request(before_request)
-    app.after_request(after_request)
-    app.teardown_request(teardown_request)
+    app.before_request(middleware.before_request)
+    app.after_request(middleware.after_request)
+    app.teardown_request(middleware.teardown_request)
+
+    # error handles
+    app.register_error_handler(404, error_handlers.exception_404_not_found)
+    app.register_error_handler(405, error_handlers.exception_method_not_allow)
 
     # blueprint
-    app.register_blueprint(index_blueprint, url_prefix='/api/v1')
-    app.register_blueprint(user_blueprint, url_prefix='/api/v1')
+    app.register_blueprint(index.index_blueprint, url_prefix='/api/v1')
+    app.register_blueprint(user.user_blueprint, url_prefix='/api/v1')
 
     return app
