@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask
-from flask_wtf.csrf import CSRFProtect
 
 from application.settings.dev import DevConfig
 from application.settings.prod import ProdConfig
@@ -29,7 +28,7 @@ def create_app(conf_name):
     extensions.bcrypt.init_app(app)
 
     # open CSRF
-    # CSRFProtect(app)
+    # extensions.CSRFProtect(app)
 
     # config db
     extensions.db.init_app(app)
