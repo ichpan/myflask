@@ -31,3 +31,5 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 5001
 ENTRYPOINT ["/usr/bin/supervisord", "-c", "supervisor.conf"]
+
+docker run -d -p 5001:5001 --name myflask

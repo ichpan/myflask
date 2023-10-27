@@ -1,7 +1,7 @@
 Flask[async]==2.3.2
 Flask-SQLAlchemy==3.0.3
 flask-redis==0.4.0
-flask_wtf==1.1.1
+flask_wtf==1.2.1
 flask-cors==3.0.10
 celery[redis]
 pymysql==1.0.3
