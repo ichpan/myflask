@@ -36,7 +36,7 @@ def send_weather_info():
     """
 
     mail.send_email(
-        to_email='mhan_2010@163.com',
+        to_email='2965345482@qq.com',
         subject='安同学给您请安啦',
         body=greet
     )
