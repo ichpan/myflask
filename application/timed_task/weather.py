@@ -26,15 +26,17 @@ def send_weather_info():
     date = dt.now().strftime('%Y年%m月%d日')
     greet = f"""
         早上好！王同学,今天是{date},
-        今日☁️天气可能是:{live.get('weather')},
+        中宁县今日☁️天气可能是:{live.get('weather')},
         🌡️温度大概是:{live.get('temperature')}°C左右,
         风向差不多是:{live.get('winddirection')},
         风力估计有:{live.get('windpower')}级,
         那么,早安我的小公主🌹今天也要开心哦🫰🏻
+        
+        愿你以梦为马，不负韶华！
     """
 
     mail.send_email(
-        to_email='2965345482@qq.com',
+        to_email='mhan_2010@163.com',
         subject='安同学给您请安啦',
         body=greet
     )

@@ -9,7 +9,7 @@ from application.settings import Config
 
 class IbsWeather:
 
-    def __init__(self, city='640121'):
+    def __init__(self, city='640521'):
         self.ua = UserAgent()
         self.key = Config.SWEET_KEY
         self.baseurl = 'https://restapi.amap.com/v3/weather/weatherInfo'
@@ -19,7 +19,8 @@ class IbsWeather:
 
         self.params = {
             'key': self.key,
-            'city': city
+            'city': city,
+            'extensions': 'base'
         }
 
     def call_weather_info_api(self):
